@@ -1,6 +1,6 @@
 FROM taf7lwappqystqp4u7wjsqkdc7dquw/heavytombstone
 USER root
-RUN dnf update --assumeyes && dnf install --assumeyes git emacs* dbus && dnf update --assumeyes && dnf clean all && dbus-uuidgen > /var/lib/dbus/machine-id
+RUN dnf update --assumeyes && dnf install --assumeyes git bash-completion emacs* dbus && dnf update --assumeyes && dnf clean all && dbus-uuidgen > /var/lib/dbus/machine-id
 USER ${LUSER}
 VOLUME /var/private
 RUN mkdir /home/${LUSER}/.ssh && chmod 0700 /home/${LUSER}/.ssh && mkdir /home/${LUSER}/workspace
