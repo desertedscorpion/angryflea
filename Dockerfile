@@ -1,8 +1,8 @@
 FROM taf7lwappqystqp4u7wjsqkdc7dquw/heavytombstone
 USER root
-RUN dnf update --assumeyes && dnf install --assumeyes git bash-completion emacs* dbus && dnf update --assumeyes && dnf clean all && dbus-uuidgen > /var/lib/dbus/machine-id
 COPY post-commit.sh /usr/local/bin/post-commit
-RUN chmod 0555 /usr/local/bin/post-commit
+COPY new-branch.sh /usr/local/bin/new-branch
+RUN dnf update --assumeyes && dnf install --assumeyes git bash-completion emacs* dbus && dnf update --assumeyes && dnf clean all && dbus-uuidgen > /var/lib/dbus/machine-id && chmod 0555 /usr/local/bin/post-commit && chmod 0555 /usr/local/bin/new-branch
 USER ${LUSER}
 VOLUME /var/private
 RUN mkdir /home/${LUSER}/.ssh && chmod 0700 /home/${LUSER}/.ssh && mkdir /home/${LUSER}/workspace
